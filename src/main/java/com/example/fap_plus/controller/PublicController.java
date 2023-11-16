@@ -13,12 +13,12 @@ import java.util.List;
 @RestController
 @RequestMapping("/public")
 public class PublicController {
-//    @Autowired
-//    IStudentService studentService;
+    @Autowired
+    IStudentService studentService;
 
     @GetMapping
-    public String getAllStudent() {
-        return "Hello but new";
+    public List<Student> getAllStudent() {
+        return studentService.getAllStudent();
     }
 
 }
