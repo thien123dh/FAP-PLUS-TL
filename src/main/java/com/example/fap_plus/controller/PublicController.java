@@ -11,11 +11,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
+@RequestMapping("/public")
 public class PublicController {
     @Autowired
     IStudentService studentService;
 
-    @GetMapping("/public")
+    @GetMapping
     public List<Student> getAllStudent() {
         return studentService.getAllStudent();
     }
