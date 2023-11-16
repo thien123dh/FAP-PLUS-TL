@@ -2,6 +2,7 @@ package com.example.fap_plus.controller;
 
 import com.example.fap_plus.DAO.IStudentDAO;
 import com.example.fap_plus.entity.Student;
+import com.example.fap_plus.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,12 +12,12 @@ import java.util.List;
 
 @RestController
 public class PublicController {
-//    @Autowired
-//    IStudentDAO studentDAO;
+    @Autowired
+    IStudentService studentService;
 
     @GetMapping("/public")
-    public String getAllStudent() {
-        return "Hello";
+    public List<Student> getAllStudent() {
+        return studentService.getAllStudent();
     }
 
 }
