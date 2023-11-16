@@ -11,8 +11,8 @@ import java.util.List;
 
 @RestController
 public class PublicController {
-    @Autowired
-    IStudentDAO studentDAO;
+//    @Autowired
+//    IStudentDAO studentDAO;
 
     @GetMapping("/public")
     public String getAllStudent() {
