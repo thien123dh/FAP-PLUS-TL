@@ -10,14 +10,13 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.List;
 
 @RestController
-@RequestMapping("/public")
 public class PublicController {
     @Autowired
     IStudentDAO studentDAO;
 
-    @GetMapping
-    public List<Student> getAllStudent() {
-        return studentDAO.findAll();
+    @GetMapping("/public")
+    public String getAllStudent() {
+        return "Hello";
     }
 
 }
