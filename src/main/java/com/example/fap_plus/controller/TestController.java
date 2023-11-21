@@ -1,10 +1,7 @@
 package com.example.fap_plus.controller;
 
 import com.example.fap_plus.DAO.ICurriculumDAO;
-import com.example.fap_plus.entity.Curriculum;
-import com.example.fap_plus.entity.Major;
-import com.example.fap_plus.entity.Student;
-import com.example.fap_plus.entity.Subject;
+import com.example.fap_plus.entity.*;
 import com.example.fap_plus.service.IMajorService;
 import com.example.fap_plus.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,6 +29,9 @@ public class TestController {
     @GetMapping("/curriculum")
     public List<Curriculum> getAllMajors() {
         Long majorId = 1L;
+
+        Users user = new Users();
+
         return curriculumDAO.findCurriculumByMajor(majorId);
     }
 }
