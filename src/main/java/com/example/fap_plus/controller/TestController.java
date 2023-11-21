@@ -31,6 +31,7 @@ public class TestController {
 
     @GetMapping("/curriculum")
     public List<Curriculum> getAllMajors() {
-        return curriculumDAO.findAll().stream().toList();
+        Long majorId = 1L;
+        return curriculumDAO.findCurriculumByMajor(majorId);
     }
 }

@@ -1,8 +1,6 @@
 package com.example.fap_plus.entity;
-
 import jakarta.persistence.*;
 import lombok.Data;
-
 @Entity
 @Data
 @Table(name = "subject_detail")
