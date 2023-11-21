@@ -20,8 +20,6 @@ public class TestController {
     @Autowired
     IStudentService studentService;
     @Autowired
-    IMajorService majorService;
-    @Autowired
     ICurriculumDAO curriculumDAO;
     @Autowired
     ISubjectDAO subjectDAO;
@@ -38,6 +36,9 @@ public class TestController {
     @GetMapping("/curriculum")
     public List<Curriculum> getAllMajors() {
         Long majorId = 1L;
+
+        Users user = new Users();
+
         return curriculumDAO.findCurriculumByMajor(majorId);
     }
 
