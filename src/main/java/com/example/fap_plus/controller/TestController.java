@@ -20,8 +20,6 @@ public class TestController {
     @Autowired
     IStudentService studentService;
     @Autowired
-    IMajorService majorService;
-    @Autowired
     ICurriculumDAO curriculumDAO;
     @Autowired
     ISubjectDAO subjectDAO;

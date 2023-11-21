@@ -3,6 +3,7 @@ package com.example.fap_plus.entity;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
+import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Date;
 

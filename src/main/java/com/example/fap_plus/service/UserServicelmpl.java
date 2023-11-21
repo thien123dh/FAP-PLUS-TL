@@ -11,7 +11,6 @@ import java.util.List;
 public class UserServicelmpl implements IUserService{
     @Autowired
     IUserDAO userDAO;
-
     @Override
     public List<Users> getAllUsers() {
         return userDAO.findAll().stream().toList();
