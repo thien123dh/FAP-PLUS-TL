@@ -11,5 +11,4 @@ public interface ICurriculumDAO extends JpaRepository<Curriculum, Integer> {
     @Query("SELECT c FROM Curriculum c " +
             "WHERE c.majorId = :majorId")
     public List<Curriculum> findCurriculumByMajor(@Param("majorId") Long majorId);
-
 }
