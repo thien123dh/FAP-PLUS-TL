@@ -1,6 +1,7 @@
 package com.example.fap_plus.controller;
 
 import com.example.fap_plus.DAO.ICurriculumDAO;
+import com.example.fap_plus.DAO.ISubjectDAO;
 import com.example.fap_plus.entity.Curriculum;
 import com.example.fap_plus.entity.Major;
 import com.example.fap_plus.entity.Student;
@@ -9,6 +10,7 @@ import com.example.fap_plus.service.IMajorService;
 import com.example.fap_plus.service.IStudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -23,6 +25,8 @@ public class TestController {
     IMajorService majorService;
     @Autowired
     ICurriculumDAO curriculumDAO;
+    @Autowired
+    ISubjectDAO subjectDAO;
 
     @GetMapping("/students")
     public List<Student> getAllStudent() {
@@ -33,5 +37,10 @@ public class TestController {
     public List<Curriculum> getAllMajors() {
         Long majorId = 1L;
         return curriculumDAO.findCurriculumByMajor(majorId);
+    }
+
+    @GetMapping("/subject/{code}")
+    public Subject getSubjectByCode(@PathVariable(name = "code") String code) {
+        return subjectDAO.findSubjectByCode(code);
     }
 }
