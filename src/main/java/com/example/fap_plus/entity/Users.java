@@ -21,7 +21,6 @@ public class Users {
     private String lastName;
     private Date dateOfBirth;
     private Date createDate;
-
     @ManyToOne
     private Campus campus;
     @ManyToOne(targetEntity = Role.class)
