@@ -52,7 +52,7 @@ public class TestController {
         userDAO.save(users);
     }
 
-    @GetMapping("/staff/student")
+    @GetMapping("/student")
     public List<Users> getAllUsers() {
        return userService.getAllUsers();
     }

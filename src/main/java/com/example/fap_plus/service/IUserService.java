@@ -11,6 +11,4 @@ public interface IUserService {
     public Page<Users> getUserWithPageable(int page, int size);
     public Users getUserByEmail(String email);
     public String getLoginUserEmail();
-
-
 }

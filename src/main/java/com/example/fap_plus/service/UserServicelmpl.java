@@ -57,10 +57,4 @@ public class UserServicelmpl implements IUserService{
 
         return null;
     }
-<<<<<<< HEAD
-=======
-
-
-
->>>>>>> 3f4618fed9b0be1924f46f24eab25aaa1fcafeb6
 }

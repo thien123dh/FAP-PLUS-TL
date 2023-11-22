@@ -2,6 +2,7 @@ package com.example.fap_plus.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
+import jakarta.websocket.OnError;
 import lombok.*;
 import org.springframework.security.core.userdetails.UserDetails;
 

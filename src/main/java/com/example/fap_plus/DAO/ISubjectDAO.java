@@ -8,7 +8,6 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface ISubjectDAO extends JpaRepository<Subject, Long> {
-
     @Query("SELECT s FROM Subject s " +
             "WHERE s.code = :code")
     public Subject findSubjectByCode(@Param("code") String code);

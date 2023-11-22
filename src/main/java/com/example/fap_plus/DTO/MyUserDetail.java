@@ -22,8 +22,6 @@ public class MyUserDetail implements UserDetails {
 
         Role role = user.getRole();
 
-        System.out.println(user.getRole().getLabel());
-
         authorities.add(new SimpleGrantedAuthority(role.getLabel()));
 
         return authorities;
