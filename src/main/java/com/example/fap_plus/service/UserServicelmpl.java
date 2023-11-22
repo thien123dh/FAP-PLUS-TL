@@ -1,7 +1,6 @@
 package com.example.fap_plus.service;
 
 import com.example.fap_plus.DAO.IUserDAO;
-import com.example.fap_plus.entity.Student;
 import com.example.fap_plus.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +21,10 @@ public class UserServicelmpl implements IUserService{
         return userDAO.findAll().stream().toList();
     }
 
+    private boolean isLoginUser(String email) {
+        return email.equals(getLoginUserEmail());
+    }
+
     @Override
     public Page<Users> getUserWithPageable(int page, int size) {
         Pageable usersPageable = PageRequest.of(page, size);
@@ -30,8 +33,12 @@ public class UserServicelmpl implements IUserService{
 
     @Override
     public Users getUserByEmail(String email) {
-        Users u = userDAO.findUserByEmail(email);
-        return u;
+        if (isLoginUser(email)) {
+            Users u = userDAO.findUserByEmail(email);
+            return u;
+        }
+
+        return null;
     }
 
     @Override
@@ -50,4 +57,10 @@ public class UserServicelmpl implements IUserService{
 
         return null;
     }
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 3f4618fed9b0be1924f46f24eab25aaa1fcafeb6
 }
