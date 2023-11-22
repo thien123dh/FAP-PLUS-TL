@@ -19,6 +19,8 @@ public class AllRoleController {
 
     @GetMapping("/{email}")
     public Users getUserByEmail(@PathVariable(name ="email") String email){
-        return userService.getUserByEmail(email);
+        if (email != null && email.equals(userService.getLoginUserEmail()))
+            return userService.getLoginUser();
+        return null;
     }
 }
