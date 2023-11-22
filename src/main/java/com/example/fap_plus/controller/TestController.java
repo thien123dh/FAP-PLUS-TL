@@ -33,15 +33,6 @@ public class TestController {
         return studentService.getAllStudent();
     }
 
-    @GetMapping("/curriculum")
-    public List<Curriculum> getAllMajors() {
-        Long majorId = 1L;
-
-        Users user = new Users();
-
-        return curriculumDAO.findCurriculumByMajor(majorId);
-    }
-
     @GetMapping("/subject/{code}")
     public Subject getSubjectByCode(@PathVariable(name = "code") String code) {
         return subjectDAO.findSubjectByCode(code);

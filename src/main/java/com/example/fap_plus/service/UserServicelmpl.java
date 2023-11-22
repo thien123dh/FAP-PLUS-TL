@@ -1,5 +1,6 @@
 package com.example.fap_plus.service;
 
+import com.example.fap_plus.DAO.IMajorOfStudentDAO;
 import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,12 +17,14 @@ import java.util.List;
 public class UserServicelmpl implements IUserService{
     @Autowired
     IUserDAO userDAO;
+    @Autowired
+    IMajorOfStudentDAO majorOfStudentDAO;
     @Override
     public List<Users> getAllUsers() {
         return userDAO.findAll().stream().toList();
     }
 
-    private boolean isLoginUser(String email) {
+    public boolean isLoginUser(String email) {
         return email.equals(getLoginUserEmail());
     }
 
@@ -32,8 +35,10 @@ public class UserServicelmpl implements IUserService{
     }
 
     @Override
-    public Users getUserByEmail(String email) {
-        if (isLoginUser(email)) {
+    public Users getLoginUser() {
+        String email = getLoginUserEmail();
+
+        if (email != null) {
             Users u = userDAO.findUserByEmail(email);
             return u;
         }

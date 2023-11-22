@@ -10,7 +10,7 @@ public class MajorOfStudent {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Long userId;
-    @OneToOne
-    private Major major;
+    private boolean isEnabled;
+    private Long usersId;
+    private Long majorId;
 }
