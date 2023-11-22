@@ -4,6 +4,9 @@ import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.Student;
 import com.example.fap_plus.entity.Users;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,6 +20,12 @@ public class UserServicelmpl implements IUserService{
     @Override
     public List<Users> getAllUsers() {
         return userDAO.findAll().stream().toList();
+    }
+
+    @Override
+    public Page<Users> getUserWithPageable(int page, int size) {
+        Pageable usersPageable = PageRequest.of(page, size);
+        return userDAO.findAll(usersPageable);
     }
 
     @Override
@@ -41,6 +50,4 @@ public class UserServicelmpl implements IUserService{
 
         return null;
     }
-
-
 }
