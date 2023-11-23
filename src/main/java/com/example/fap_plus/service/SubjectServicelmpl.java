@@ -7,9 +7,8 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class SubjectServicelmpl implements ISubjectService {
-@Autowired
+    @Autowired
     ISubjectDAO subjectDAO;
-
     @Override
     public Subject getSubjectByCode(String code) {
         Subject s = subjectDAO.findSubjectByCode(code);
