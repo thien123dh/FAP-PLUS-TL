@@ -23,6 +23,4 @@ public class StudentController {
         int pageSize = 10;
         return curriculumService.getCurriculumByLoginUserMajor(page - 1, pageSize);
     }
-
-
 }
