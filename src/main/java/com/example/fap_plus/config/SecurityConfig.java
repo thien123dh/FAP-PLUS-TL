@@ -53,7 +53,7 @@ public class SecurityConfig {
                 });
 //        http.formLogin(Customizer.withDefaults());
         http.formLogin(form -> form
-                .usernameParameter("userName")
+                .usernameParameter("username")
                 .passwordParameter("password")
                 .successHandler(( request, response, authentication ) -> {
                             response.setHeader( "Location", "Your angular url");
