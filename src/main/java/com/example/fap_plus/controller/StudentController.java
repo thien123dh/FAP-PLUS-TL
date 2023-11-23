@@ -5,6 +5,7 @@ import com.example.fap_plus.entity.Curriculum;
 import com.example.fap_plus.entity.Users;
 import com.example.fap_plus.service.ICurriculumService;
 import com.example.fap_plus.service.IUserService;
+import com.example.fap_plus.shared_file.SharedVariables;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 public class StudentController {
     @Autowired
     ICurriculumService curriculumService;
-
     @GetMapping("/curriculum")
     public Page<Curriculum> getCurriculumByLoginUserMajor(@RequestParam(name = "page", defaultValue = "1") int page){
         int pageSize = 10;

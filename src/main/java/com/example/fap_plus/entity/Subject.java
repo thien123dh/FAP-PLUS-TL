@@ -15,8 +15,6 @@ public class Subject {
     private String code;
     private String name;
     private boolean isEnabled;
-    @OneToOne
+    @OneToOne(fetch = FetchType.LAZY)
     private SubjectDetail subjectDetail;
-//    @OneToMany
-//    private List<Major> majorList;
 }
