@@ -6,9 +6,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 
-public interface IClassesDAO extends JpaRepository<Classes, Integer> {
+public interface IClassesDAO extends JpaRepository<Classes, Long> {
     @Query("SELECT c FROM Classes c " +
             "WHERE c.teacher.email = :email")
     public Page<Classes> findClassesByTeacherId(Pageable pageable, String email);
+
 
 }
