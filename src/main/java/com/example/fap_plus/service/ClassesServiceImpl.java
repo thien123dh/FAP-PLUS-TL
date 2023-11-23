@@ -19,9 +19,4 @@ public class ClassesServiceImpl implements IClassesService {
         return classesDAO.findClassesByTeacherId(pageable, email);
     }
 
-    @Override
-    public Classes getClassById(String id){
-        Classes c = classesDAO.findClassById(id);
-        return c;
-    }
 }

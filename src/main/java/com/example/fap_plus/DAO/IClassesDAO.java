@@ -11,7 +11,5 @@ public interface IClassesDAO extends JpaRepository<Classes, Integer> {
             "WHERE c.teacher.email = :email")
     public Page<Classes> findClassesByTeacherId(Pageable pageable, String email);
 
-    @Query("SELECT c FROM Classes c " +
-            "WHERE c.id = :id")
-    public Classes findClassById(String id);
+
 }
