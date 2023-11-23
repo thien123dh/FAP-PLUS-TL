@@ -1,6 +1,7 @@
 package com.example.fap_plus.config;
 
 import com.example.fap_plus.service.UsersDetailServiceImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -50,7 +51,22 @@ public class SecurityConfig {
                             .requestMatchers("/teacher/**").hasAnyAuthority("TEACHER")
                             .anyRequest().authenticated();
                 });
-        http.formLogin(Customizer.withDefaults());
+//        http.formLogin(Customizer.withDefaults());
+        http.formLogin(form -> form
+                .usernameParameter("userName")
+                .passwordParameter("password")
+                .successHandler(( request, response, authentication ) -> {
+                            response.setHeader( "Location", "Your angular url");
+                            response.setHeader( "message", "authenticated" ); // <-custom http header as redirection does not allow content inside response body
+                            response.setStatus( HttpServletResponse.SC_FOUND ); // <- redirection status
+                        }
+                )
+                .failureHandler(
+                        (request, response, authenticationException ) -> {
+                            response.setHeader( "Location", "Your angular url");
+                            response.setHeader( "message", "error" );
+                            response.setStatus( HttpServletResponse.SC_FOUND);
+                        }));
         http.httpBasic(Customizer.withDefaults());
         return http.build();
     }
