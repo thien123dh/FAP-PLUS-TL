@@ -4,12 +4,9 @@ import com.example.fap_plus.DAO.ICurriculumDAO;
 import com.example.fap_plus.DAO.ISubjectDAO;
 import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.*;
-import com.example.fap_plus.service.IMajorService;
-import com.example.fap_plus.service.IStudentService;
-import com.example.fap_plus.service.IUserService;
-import org.apache.catalina.User;
+import com.example.fap_plus.service.interface_service.IStudentService;
+import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

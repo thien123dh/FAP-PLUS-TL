@@ -1,13 +1,10 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.impl;
 
 import com.example.fap_plus.DAO.IMajorDAO;
 import com.example.fap_plus.entity.Major;
-import com.example.fap_plus.entity.Subject;
-import jakarta.persistence.EntityManager;
+import com.example.fap_plus.service.interface_service.IMajorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
 
 @Service
 public class MajorServiceImpl implements IMajorService {

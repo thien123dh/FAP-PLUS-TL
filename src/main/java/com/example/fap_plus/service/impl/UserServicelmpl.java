@@ -1,8 +1,9 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.impl;
 
 import com.example.fap_plus.DAO.IMajorOfStudentDAO;
 import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.Users;
+import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,7 +15,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 @Service
-public class UserServicelmpl implements IUserService{
+public class UserServicelmpl implements IUserService {
     @Autowired
     IUserDAO userDAO;
     @Autowired
@@ -61,5 +62,10 @@ public class UserServicelmpl implements IUserService{
         }
 
         return null;
+    }
+
+    @Override
+    public Users getUserByEmail(String email) {
+        return userDAO.findUserByEmail(email);
     }
 }

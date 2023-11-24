@@ -1,11 +1,11 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.impl;
 
 import com.example.fap_plus.DAO.ICurriculumDAO;
 import com.example.fap_plus.DAO.IMajorOfStudentDAO;
 import com.example.fap_plus.entity.Curriculum;
-import com.example.fap_plus.entity.Major;
-import com.example.fap_plus.entity.MajorOfStudent;
 import com.example.fap_plus.entity.Users;
+import com.example.fap_plus.service.interface_service.ICurriculumService;
+import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +27,7 @@ public class CurriculumServicelmpl implements ICurriculumService {
 
         if (loginUser != null) {
             Pageable pageable = PageRequest.of(page, size);
+
             Long majorId = majorOfStudentDAO.findMajorOfStudentById(loginUser.getId(),true).getMajorId();
             return curriculumDAO.findCurriculumByMajor(pageable, majorId);
         }

@@ -2,7 +2,7 @@ package com.example.fap_plus.controller;
 
 import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.Users;
-import com.example.fap_plus.service.IUserService;
+import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

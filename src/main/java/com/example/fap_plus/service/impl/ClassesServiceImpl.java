@@ -1,4 +1,4 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.impl;
 
 import com.example.fap_plus.DAO.IClassOfStudentDAO;
 import com.example.fap_plus.DAO.IClassesDAO;
@@ -6,6 +6,7 @@ import com.example.fap_plus.DAO.IUserDAO;
 import com.example.fap_plus.entity.ClassOfStudent;
 import com.example.fap_plus.entity.Classes;
 import com.example.fap_plus.entity.Users;
+import com.example.fap_plus.service.interface_service.IClassesService;
 import com.example.fap_plus.structure.ClassDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;

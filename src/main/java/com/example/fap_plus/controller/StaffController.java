@@ -1,7 +1,7 @@
 package com.example.fap_plus.controller;
 
 import com.example.fap_plus.entity.Users;
-import com.example.fap_plus.service.IUserService;
+import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +20,7 @@ public class StaffController {
     public List<Users> getAllUsers() {
         return userService.getAllUsers();
     }
+
 
     @GetMapping("/pageable-student")
     public Page<Users> getUserPageable(@RequestParam(name = "page", defaultValue = "1") int page) {

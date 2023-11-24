@@ -1,8 +1,8 @@
 package com.example.fap_plus.controller;
 
 import com.example.fap_plus.entity.Classes;
-import com.example.fap_plus.service.IClassesService;
-import com.example.fap_plus.service.IUserService;
+import com.example.fap_plus.service.interface_service.IClassesService;
+import com.example.fap_plus.service.interface_service.IUserService;
 import com.example.fap_plus.shared_file.SharedVariables;
 import com.example.fap_plus.structure.ClassDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;

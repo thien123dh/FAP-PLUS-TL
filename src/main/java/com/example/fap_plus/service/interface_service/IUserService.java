@@ -1,4 +1,4 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.interface_service;
 
 import com.example.fap_plus.entity.Users;
 import org.springframework.data.domain.Page;
@@ -10,4 +10,5 @@ public interface IUserService {
     public Page<Users> getUserWithPageable(int page, int size);
     public Users getLoginUser();
     public String getLoginUserEmail();
+    public Users getUserByEmail(String email);
 }

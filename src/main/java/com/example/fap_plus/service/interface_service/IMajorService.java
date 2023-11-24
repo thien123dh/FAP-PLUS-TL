@@ -1,4 +1,4 @@
-package com.example.fap_plus.service;
+package com.example.fap_plus.service.interface_service;
 
 import com.example.fap_plus.entity.Major;
 import com.example.fap_plus.entity.Subject;
