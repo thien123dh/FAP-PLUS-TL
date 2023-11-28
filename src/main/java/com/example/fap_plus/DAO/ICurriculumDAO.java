@@ -11,5 +11,5 @@ import java.util.List;
 public interface ICurriculumDAO extends JpaRepository<Curriculum, Integer> {
     @Query("SELECT c FROM Curriculum c " +
             "WHERE c.majorId = :majorId")
-    public Page<Curriculum> findCurriculumByMajor(Pageable pageable, @Param("majorId") Long majorId);
+    public List<Curriculum> findCurriculumByMajor(@Param("majorId") Long majorId);
 }

@@ -12,6 +12,8 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class CurriculumServicelmpl implements ICurriculumService {
     @Autowired
@@ -22,14 +24,20 @@ public class CurriculumServicelmpl implements ICurriculumService {
     IMajorOfStudentDAO majorOfStudentDAO;
 
     @Override
-    public Page<Curriculum> getCurriculumByLoginUserMajor(int page, int size){
-        Users loginUser = userService.getLoginUser();
+    public List<Curriculum> getCurriculumByEmail(String email){
+        Users user = userService.getUserByEmail(email);
 
-        if (loginUser != null) {
-            Pageable pageable = PageRequest.of(page, size);
+        if (user != null) {
+            Long majorId = majorOfStudentDAO.findMajorOfStudentById(user.getId(),true).getMajorId();
 
-            Long majorId = majorOfStudentDAO.findMajorOfStudentById(loginUser.getId(),true).getMajorId();
-            return curriculumDAO.findCurriculumByMajor(pageable, majorId);
+            List<Curriculum> curriculumList = curriculumDAO.findCurriculumByMajor(majorId);
+
+            curriculumList = curriculumList.stream()
+                    .sorted(
+                            (o1, o2) -> o1.getSemester().getId().compareTo(o2.getSemester().getId())
+                    ).toList();
+
+            return curriculumList;
         }
 
         return null;
