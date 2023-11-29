@@ -10,10 +10,7 @@ import com.example.fap_plus.entity.Schedule;
 import com.example.fap_plus.entity.Users;
 import com.example.fap_plus.service.interface_service.IScheduleService;
 import com.example.fap_plus.service.interface_service.IUserService;
-import com.example.fap_plus.static_entity.DaySlot;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.security.core.parameters.P;
 import org.springframework.stereotype.Service;
 
 import java.time.DayOfWeek;
