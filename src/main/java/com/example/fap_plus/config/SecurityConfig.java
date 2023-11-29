@@ -57,10 +57,11 @@ public class SecurityConfig {
                             .requestMatchers("/auth/**").permitAll()
                             .requestMatchers("/public/**").permitAll()
                             .requestMatchers("/images/**").permitAll()
+                            .requestMatchers("/test/**").permitAll()
                             .requestMatchers("/student/**").hasAuthority("STUDENT")
                             .requestMatchers("/staff/**").hasAuthority("STAFF")
-                            .requestMatchers("/teacher/**").hasAuthority("TEACHER")
-                            .anyRequest().authenticated();
+                            .requestMatchers("/teacher/**").hasAuthority("TEACHER");
+//                            .anyRequest().authenticated();
                 });
 
         http.sessionManagement(httpSecuritySessionManagementConfigurer -> {

@@ -12,4 +12,8 @@ public interface IClassOfStudentDAO extends JpaRepository<ClassOfStudent, Long> 
     @Query("SELECT c FROM ClassOfStudent c " +
             "WHERE c.classesId = :classesId")
     public List<ClassOfStudent> findClassByClassId(@Param("classesId") Long classesId);
+
+    @Query("SELECT c FROM ClassOfStudent c " +
+            "WHERE c.usersId = :userId")
+    public List<ClassOfStudent> findClassByUserId(@Param("userId") Long userId);
 }
