@@ -93,7 +93,7 @@ public class ScheduleServiceImpl implements IScheduleService {
                 if (localDateTmp.getDayOfWeek().getValue() == firstDayOfWeek
                         || localDateTmp.getDayOfWeek().getValue() == secondDayOfWeek) {
 
-                    System.out.println(numberOfSlot + ", " + localDateTmp);
+//                    System.out.println(numberOfSlot + ", " + localDateTmp);
 
                     ScheduleDTO dto = new ScheduleDTO(classes, schedule.getSession(), localDateTmp);
                     scheduleDTOList.add(dto);
