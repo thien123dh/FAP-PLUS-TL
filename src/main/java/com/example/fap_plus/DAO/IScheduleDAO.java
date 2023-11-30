@@ -22,4 +22,7 @@ public interface IScheduleDAO extends JpaRepository<Schedule, Long> {
     public List<Schedule> findScheduleByClassIdAndDate(@Param("classIdList") List<Long> classIdList,
                                                             @Param("date") LocalDate date);
 
+    @Query("SELECT s FROM Schedule s " +
+            "WHERE s.classId IN :classIdList")
+    public List<Schedule> findScheduleByClassIdList(@Param("classIdList") List<Long> classIdList);
 }

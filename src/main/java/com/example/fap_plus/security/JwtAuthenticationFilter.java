@@ -45,7 +45,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         // get JWT token from http request
         String token = getTokenFromRequest(request);
 
-        System.out.println("JwtAuthenticationFilter, line 49, Token: " + token);
+//        System.out.println("JwtAuthenticationFilter, line 49, Token: " + token);
 
         // validate token
         if(StringUtils.hasText(token) && jwtTokenProvider.validateToken(token)){
@@ -57,7 +57,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
                 // load the user associated with token
                 UserDetails userDetails = userDetailsService.loadUserByUsername(username);
 
-                System.out.println("JwtAuthenticationFilter, line 49, User-role: " + userDetails.getAuthorities().stream().findFirst().get());
+//                System.out.println("JwtAuthenticationFilter, line 49, User-role: " + userDetails.getAuthorities().stream().findFirst().get());
 
                 UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken (
                         userDetails,

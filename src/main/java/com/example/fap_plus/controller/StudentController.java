@@ -6,6 +6,7 @@ import com.example.fap_plus.DTO.ScheduleDTO;
 import com.example.fap_plus.entity.Curriculum;
 import com.example.fap_plus.entity.Schedule;
 import com.example.fap_plus.entity.Session;
+import com.example.fap_plus.entity.Users;
 import com.example.fap_plus.service.interface_service.*;
 import com.example.fap_plus.shared_file.SharedVariables;
 import com.example.fap_plus.structure.ClassDetailDTO;
@@ -49,6 +50,15 @@ public class StudentController {
                 .body(classService.getClassDetailByClassId(classId));
     }
 
+    @GetMapping("/all-session")
+    public ResponseEntity<List<Session>> getAllSessionOfStudent() {
+        Users user = userService.getLoginUser();
+
+        List<Session> sessionList = sessionService.getAllSessionOfUserId(user.getId());
+
+        return ResponseEntity.status(HttpStatus.OK)
+                .body(sessionList);
+    }
     @GetMapping("/schedule")
     public ResponseEntity<List<ScheduleDTO>> getSchedule(
             @RequestParam(name = "session-id", required = false) Integer sessionId) {

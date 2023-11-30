@@ -13,4 +13,5 @@ public interface ISessionDAO extends JpaRepository<Session, Integer> {
     @Query("SELECT s FROM Session s " +
             "WHERE :date BETWEEN s.startDate AND s.endDate")
     public Session getSessionByDate(@Param("date") LocalDate date);
+
 }

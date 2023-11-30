@@ -16,7 +16,7 @@ public class Schedule {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Long classId;
-    //Noi bang bi sai
+
     @ManyToOne
     @JoinColumn(name = "day_slot_id")
     private DaySlot daySlot;

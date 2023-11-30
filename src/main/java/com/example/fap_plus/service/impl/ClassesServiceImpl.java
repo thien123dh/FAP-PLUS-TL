@@ -45,5 +45,15 @@ public class ClassesServiceImpl implements IClassesService {
         return classDetailDTO;
     }
 
+    @Override
+    public List<Long> getAllClassesIdListByUserId(Long userId) {
+        List<ClassOfStudent> classOfStudentList = classOfStudentDAO.findClassByUserId(userId);
+
+        List<Long> classIdList = (classOfStudentList == null)
+                ? null : classOfStudentList.stream().map(ClassOfStudent::getClassesId).toList();
+
+        return classIdList;
+    }
+
 
 }
