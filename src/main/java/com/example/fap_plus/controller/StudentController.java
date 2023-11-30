@@ -1,18 +1,18 @@
 package com.example.fap_plus.controller;
 
 import com.example.fap_plus.DAO.IScheduleDAO;
+import com.example.fap_plus.DAO.ISessionDAO;
 import com.example.fap_plus.DTO.ScheduleDTO;
 import com.example.fap_plus.entity.Curriculum;
 import com.example.fap_plus.entity.Schedule;
-import com.example.fap_plus.service.interface_service.IClassesService;
-import com.example.fap_plus.service.interface_service.ICurriculumService;
-import com.example.fap_plus.service.interface_service.IScheduleService;
-import com.example.fap_plus.service.interface_service.IUserService;
+import com.example.fap_plus.entity.Session;
+import com.example.fap_plus.service.interface_service.*;
 import com.example.fap_plus.shared_file.SharedVariables;
 import com.example.fap_plus.structure.ClassDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cglib.core.Local;
 import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -33,6 +33,8 @@ public class StudentController {
     IUserService userService;
     @Autowired
     IScheduleService scheduleService;
+    @Autowired
+    ISessionService sessionService;
     @GetMapping("/curriculum")
     public ResponseEntity<List<Curriculum>> getCurriculumByLoginUserMajor(){
         //Get Login Student Email
@@ -48,16 +50,18 @@ public class StudentController {
     }
 
     @GetMapping("/schedule")
-    public ResponseEntity<List<ScheduleDTO>> getSchedule() {
-//        // Lấy ngày hiện tại
-//        LocalDate currentDate = LocalDate.now();
-//        String dateString = "2023-01-05"; // Chuỗi đại diện cho ngày
-//
-//        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-//        LocalDate localDate = LocalDate.parse(dateString, formatter);
-        LocalDate currentDate = LocalDate.now();
+    public ResponseEntity<List<ScheduleDTO>> getSchedule(
+            @RequestParam(name = "session-id", required = false) Integer sessionId) {
+
+        Session requestSession = sessionId != null ?
+                sessionService.getSessionById(sessionId) : null;
+
+        //Get Session Day
+        LocalDate currentDate = requestSession == null  ?
+                LocalDate.now() : requestSession.getStartDate();
 
         String loginUserEmail = userService.getLoginUserEmail();
+
         return ResponseEntity.status(HttpStatus.OK)
                 .body(scheduleService.getScheduleDTOByEmailAndDate(loginUserEmail, currentDate));
     }

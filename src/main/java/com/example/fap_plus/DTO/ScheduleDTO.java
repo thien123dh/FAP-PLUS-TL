@@ -7,13 +7,15 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScheduleDTO {
+    private Integer slotNumber;
+
     private Classes classes;
     private Session session;
     private LocalDate date;
 }
+

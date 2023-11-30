@@ -16,7 +16,9 @@ import org.springframework.stereotype.Service;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ScheduleServiceImpl implements IScheduleService {
@@ -69,6 +71,8 @@ public class ScheduleServiceImpl implements IScheduleService {
 
     @Override
     public List<ScheduleDTO> getScheduleDTOByEmailAndDate(String email, LocalDate date) {
+        Map<String, Integer> slotCounter = new HashMap<String, Integer>();
+
         List<Schedule> scheduleList = getScheduleListByEmailAndDate(email, date);
 
         List<ScheduleDTO> scheduleDTOList = new ArrayList<>();
@@ -93,12 +97,12 @@ public class ScheduleServiceImpl implements IScheduleService {
                 if (localDateTmp.getDayOfWeek().getValue() == firstDayOfWeek
                         || localDateTmp.getDayOfWeek().getValue() == secondDayOfWeek) {
 
-//                    System.out.println(numberOfSlot + ", " + localDateTmp);
+                    String subjectCode = classes.getSubject().getCode();
 
-                    ScheduleDTO dto = new ScheduleDTO(classes, schedule.getSession(), localDateTmp);
+                    ScheduleDTO dto = new ScheduleDTO(++numberOfSlot, classes, schedule.getSession(), localDateTmp);
                     scheduleDTOList.add(dto);
 
-                    ++numberOfSlot;
+//                    System.out.println(subjectCode + " SlotNumber: #" + dto.getSlotNumber());
 
                     if (numberOfSlot >= NUMBER_OF_SLOT)
                         break;
