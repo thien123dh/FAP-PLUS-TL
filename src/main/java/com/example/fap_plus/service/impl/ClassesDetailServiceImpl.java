@@ -1,13 +1,11 @@
 package com.example.fap_plus.service.impl;
 
+import com.example.fap_plus.DAO.IAttendanceDAO;
 import com.example.fap_plus.DAO.IClassOfStudentDAO;
 import com.example.fap_plus.DAO.IClassesDAO;
 import com.example.fap_plus.DAO.IClassesDetailDAO;
 import com.example.fap_plus.DTO.ScheduleDTO;
-import com.example.fap_plus.entity.ClassOfStudent;
-import com.example.fap_plus.entity.Classes;
-import com.example.fap_plus.entity.ClassesDetail;
-import com.example.fap_plus.entity.Users;
+import com.example.fap_plus.entity.*;
 import com.example.fap_plus.service.interface_service.IClassesDetailService;
 import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +28,8 @@ public class ClassesDetailServiceImpl implements IClassesDetailService {
     private IUserService userService;
     @Autowired
     private IClassesDAO classesDAO;
+    @Autowired
+    private IAttendanceDAO attendanceDAO;
     private int NUMBER_OF_SLOT = 20;
     private LocalDate getMondayDate(LocalDate date) {
         LocalDate monday = date.with(DayOfWeek.MONDAY);
@@ -73,6 +73,8 @@ public class ClassesDetailServiceImpl implements IClassesDetailService {
     public List<ScheduleDTO> getScheduleDTOByEmailAndDate(String email, LocalDate date) {
         Map<String, Integer> slotCounter = new HashMap<String, Integer>();
 
+        Users user = userService.getUserByEmail(email);
+
         List<ClassesDetail> scheduleList = getScheduleListByEmailAndDate(email, date);
 
         List<ScheduleDTO> scheduleDTOList = new ArrayList<>();
@@ -90,6 +92,9 @@ public class ClassesDetailServiceImpl implements IClassesDetailService {
             Classes classes = classesDAO.findById(schedule.getClassId()).get();
             int numberOfSlot = 0;
 
+            Attendance attendance = attendanceDAO.findAttendanceByUserIdAndClassId(user.getId()
+                                        , schedule.getClassId());
+
             while (schedule.getSession().getStartDate().compareTo(localDateTmp) <= 0
                     && localDateTmp.compareTo(schedule.getSession().getEndDate()) <= 0) {
 
@@ -99,7 +104,17 @@ public class ClassesDetailServiceImpl implements IClassesDetailService {
 
                     String subjectCode = classes.getSubject().getCode();
 
-                    ScheduleDTO dto = new ScheduleDTO(++numberOfSlot, classes, schedule.getSession(), localDateTmp, schedule.getSlot());
+                    ++numberOfSlot;
+
+                    int attendanceStatus = (attendance == null) ? -1 : 1;
+
+                    if (attendance != null)
+                        attendanceStatus = (attendance.getAttendanceString().length() < numberOfSlot)
+                                ? -1 : attendance.getAttendanceString().charAt(numberOfSlot - 1) - '0';
+
+                    ScheduleDTO dto = new ScheduleDTO(numberOfSlot, classes,
+                            schedule.getSession(), localDateTmp, schedule.getSlot(), attendanceStatus);
+
                     scheduleDTOList.add(dto);
 
 //                    System.out.println(subjectCode + " SlotNumber: #" + dto.getSlotNumber());

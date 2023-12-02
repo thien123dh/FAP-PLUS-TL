@@ -13,12 +13,12 @@ import java.time.LocalDate;
 @NoArgsConstructor
 @AllArgsConstructor
 public class ScheduleDTO {
-
     private Integer slotNumber;
     private Classes classes;
     private Session session;
     private LocalDate date;
     private Slot slot;
-
+    //-1 = not present, 0 = absent, 1 = present
+    private int attendanceStatus = -1;
 }
 
