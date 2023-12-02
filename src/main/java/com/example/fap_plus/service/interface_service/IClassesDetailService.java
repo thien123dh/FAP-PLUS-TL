@@ -5,7 +5,7 @@ import com.example.fap_plus.DTO.ScheduleDTO;
 import java.time.LocalDate;
 import java.util.List;
 
-public interface IScheduleService {
+public interface IClassesDetailService {
     public List<ScheduleDTO> getScheduleDTOByEmailAndDate(String email, LocalDate date);
 
 }

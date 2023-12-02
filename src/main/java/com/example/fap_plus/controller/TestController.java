@@ -5,7 +5,6 @@ import com.example.fap_plus.entity.*;
 import com.example.fap_plus.service.interface_service.IStudentService;
 import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
@@ -27,7 +26,7 @@ public class TestController {
     @Autowired
     IUserService userService;
     @Autowired
-    IScheduleDAO scheduleDAO;
+    IClassesDetailDAO scheduleDAO;
     @Autowired
     ISessionDAO sessionDAO;
 
@@ -56,7 +55,7 @@ public class TestController {
         return userDAO.findUserByEmail(email);
     }
     @GetMapping("/schedule")
-    public List<Schedule> getSchedule() {
+    public List<ClassesDetail> getSchedule() {
         List<Long> list = new ArrayList<>();
         list.add(1L);
 

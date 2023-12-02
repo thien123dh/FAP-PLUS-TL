@@ -11,5 +11,4 @@ public interface IClassesDAO extends JpaRepository<Classes, Long> {
             "WHERE c.teacher.email = :email")
     public Page<Classes> findClassesByTeacherId(Pageable pageable, String email);
 
-
 }

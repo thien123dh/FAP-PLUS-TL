@@ -1,26 +1,17 @@
 package com.example.fap_plus.controller;
 
-import com.example.fap_plus.DAO.IScheduleDAO;
-import com.example.fap_plus.DAO.ISessionDAO;
 import com.example.fap_plus.DTO.ScheduleDTO;
 import com.example.fap_plus.entity.Curriculum;
-import com.example.fap_plus.entity.Schedule;
 import com.example.fap_plus.entity.Session;
 import com.example.fap_plus.entity.Users;
 import com.example.fap_plus.service.interface_service.*;
-import com.example.fap_plus.shared_file.SharedVariables;
 import com.example.fap_plus.structure.ClassDetailDTO;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cglib.core.Local;
-import org.springframework.data.domain.Page;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
-import java.util.ArrayList;
 import java.util.List;
 
 @RestController
@@ -33,7 +24,7 @@ public class StudentController {
     @Autowired
     IUserService userService;
     @Autowired
-    IScheduleService scheduleService;
+    IClassesDetailService scheduleService;
     @Autowired
     ISessionService sessionService;
     @GetMapping("/curriculum")
@@ -60,7 +51,7 @@ public class StudentController {
                 .body(sessionList);
     }
     @GetMapping("/schedule")
-    public ResponseEntity<List<ScheduleDTO>> getSchedule(
+    public ResponseEntity< List<ScheduleDTO> > getSchedule(
             @RequestParam(name = "session-id", required = false) Integer sessionId) {
 
         Session requestSession = sessionId != null ?

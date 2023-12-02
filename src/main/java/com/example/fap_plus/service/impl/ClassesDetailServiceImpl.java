@@ -2,13 +2,13 @@ package com.example.fap_plus.service.impl;
 
 import com.example.fap_plus.DAO.IClassOfStudentDAO;
 import com.example.fap_plus.DAO.IClassesDAO;
-import com.example.fap_plus.DAO.IScheduleDAO;
+import com.example.fap_plus.DAO.IClassesDetailDAO;
 import com.example.fap_plus.DTO.ScheduleDTO;
 import com.example.fap_plus.entity.ClassOfStudent;
 import com.example.fap_plus.entity.Classes;
-import com.example.fap_plus.entity.Schedule;
+import com.example.fap_plus.entity.ClassesDetail;
 import com.example.fap_plus.entity.Users;
-import com.example.fap_plus.service.interface_service.IScheduleService;
+import com.example.fap_plus.service.interface_service.IClassesDetailService;
 import com.example.fap_plus.service.interface_service.IUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,9 +21,9 @@ import java.util.List;
 import java.util.Map;
 
 @Service
-public class ScheduleServiceImpl implements IScheduleService {
+public class ClassesDetailServiceImpl implements IClassesDetailService {
     @Autowired
-    private IScheduleDAO scheduleDAO;
+    private IClassesDetailDAO scheduleDAO;
     @Autowired
     private IClassOfStudentDAO classOfStudentDAO;
     @Autowired
@@ -41,7 +41,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 
         return sunday;
     }
-    private List<Schedule> getScheduleListByEmailAndDate(String email, LocalDate date) {
+    private List<ClassesDetail> getScheduleListByEmailAndDate(String email, LocalDate date) {
         Users user = userService.getUserByEmail(email);
 
         List<ClassOfStudent> classTmpList = classOfStudentDAO.findClassByUserId(user.getId());
@@ -55,7 +55,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 //        for (Long id : classIdList)
 //            System.out.println(id);
 
-        List<Schedule> scheduleList = scheduleDAO
+        List<ClassesDetail> scheduleList = scheduleDAO
                 .findScheduleByClassIdAndDate(classIdList, date);
 
 //        for ()
@@ -73,16 +73,16 @@ public class ScheduleServiceImpl implements IScheduleService {
     public List<ScheduleDTO> getScheduleDTOByEmailAndDate(String email, LocalDate date) {
         Map<String, Integer> slotCounter = new HashMap<String, Integer>();
 
-        List<Schedule> scheduleList = getScheduleListByEmailAndDate(email, date);
+        List<ClassesDetail> scheduleList = getScheduleListByEmailAndDate(email, date);
 
         List<ScheduleDTO> scheduleDTOList = new ArrayList<>();
 
         if (scheduleList == null)
             return null;
 
-        for (Schedule schedule : scheduleList) {
-            Integer firstDayOfWeek = getDayOfWeek(0, schedule.getDaySlot().getDayOfWeek());
-            Integer secondDayOfWeek = getDayOfWeek(1, schedule.getDaySlot().getDayOfWeek());
+        for (ClassesDetail schedule : scheduleList) {
+            Integer firstDayOfWeek = getDayOfWeek(0, schedule.getDaySchedule().getDayOfWeek());
+            Integer secondDayOfWeek = getDayOfWeek(1, schedule.getDaySchedule().getDayOfWeek());
 
 //            System.out.println("schedule: " + schedule.getClassId());
 
@@ -99,7 +99,7 @@ public class ScheduleServiceImpl implements IScheduleService {
 
                     String subjectCode = classes.getSubject().getCode();
 
-                    ScheduleDTO dto = new ScheduleDTO(++numberOfSlot, classes, schedule.getSession(), localDateTmp);
+                    ScheduleDTO dto = new ScheduleDTO(++numberOfSlot, classes, schedule.getSession(), localDateTmp, schedule.getSlot());
                     scheduleDTOList.add(dto);
 
 //                    System.out.println(subjectCode + " SlotNumber: #" + dto.getSlotNumber());

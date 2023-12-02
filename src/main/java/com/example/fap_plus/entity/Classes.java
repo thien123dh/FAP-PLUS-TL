@@ -15,9 +15,6 @@ public class Classes {
     @JoinColumn(name = "teacher_id")
     private Users teacher;
     @ManyToOne
-    @JoinColumn(name = "slot_id")
-    private Slot slot;
-    @ManyToOne
     @JoinColumn(name = "subject_id")
     private Subject subject;
 }
